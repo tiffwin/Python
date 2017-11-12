@@ -41,7 +41,10 @@ def check_hand(cards):
 def play():
 	player = Player(100)
 
+	print('')
+	print('******************************')
 	print('Welcome to the Blackjack Game!')
+	print('******************************\n')
 	print('Your chips: ', player.bankroll, '\n')
 
 	while player.bankroll > 0:
@@ -87,7 +90,7 @@ def start_game(player):
 	dealer_cards.append(deck.dealCard())
 
 	print("Dealer's hand: ", dealer_cards)
-	print("Your hand: \n", player_cards) 
+	print("Your hand: ", player_cards, '\n') 
 
 	while True:
 		if check_hand(player_cards) == 21:
