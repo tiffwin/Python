@@ -1,5 +1,5 @@
-from random import shuffle
 from __future__ import print_function
+from random import shuffle
 
 class Player(object):
 	def __init__(self,bankroll):
