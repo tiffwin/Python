@@ -102,7 +102,7 @@ def start_game(player):
 			print("HIT ME!\n")
 
 			player_cards.append(deck.dealCard())
-			print("Dealer’s hand: ", dealer_cards)
+			print("Dealer's hand: ", dealer_cards)
 			print("Your hand: ", player_cards) 
 
 			#Checks if player's hand has busted
@@ -116,7 +116,7 @@ def start_game(player):
 	
 	while check_hand(dealer_cards) < 17:
 		dealer_cards.append(deck.dealCard())
-		print("Dealer’s hand: ", dealer_cards)
+		print("Dealer's hand: ", dealer_cards)
 		print("Your hand: ", player_cards) 
 
 
@@ -127,10 +127,10 @@ def start_game(player):
 		print("Your chips:", player.bankroll)
 	
 	elif check_hand(dealer_cards) == check_hand(player_cards):
-		print("It’s a tie! Your bet is being returned to you.")
+		print("It's a tie! Your bet is being returned to you.")
 
 	elif check_hand(player_cards) == 21:
-		print("You’ve hit Blackjack!")
+		print("You've hit Blackjack!")
 		player.bankroll += bet*2
 		print("You won: ", bet*2)
 
