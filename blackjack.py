@@ -36,6 +36,8 @@ def check_hand(cards):
 		else:
 			value += 1
 
+	#FOR BUG CHECKING
+	print value
 	return value
 
 def play():
