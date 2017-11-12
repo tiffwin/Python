@@ -87,7 +87,7 @@ def start_game(player):
 	dealer_cards.append(deck.dealCard())
 
 	print("Dealer's hand: ", dealer_cards)
-	print("Your hand: ", player_cards) 
+	print("Your hand: \n", player_cards) 
 
 	while True:
 		if check_hand(player_cards) == 21:
