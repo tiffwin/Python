@@ -53,21 +53,21 @@ def play():
 def start_game(player):
 	while True:
 		try:
-			bet = int(input('Enter bet amount:'))
+			bet = int(input('Enter bet amount: '))
 			
 			if bet > player.bankroll:
-				print("You don't have that much money.")
+				print("You don't have that much money.\n")
 			elif bet <= 0:
-				print ("You need to enter a positive amount.")
+				print ("You need to enter a positive amount.\n")
 			else:
-				print ('Bet placed:', bet)
+				print ('Bet placed:', bet, '\n')
 				break
 		except:
-			print("You need to enter a number.")
+			print("You need to enter a number.\n")
 			continue
 
 	player.bankroll -= bet
-	print("Money in pocket: ", player.bankroll)
+	print("Money in pocket: ", player.bankroll, '\n')
 
 	#Start the game
 	print("Starting game...\n")
@@ -92,7 +92,7 @@ def start_game(player):
 		if check_hand(player_cards) == 21:
 			break
 
-		player_choice = input('Stand(S) or Hit(H)?')
+		player_choice = input('Stand(S) or Hit(H)? \n')
 
 		if player_choice.upper() == 'S':
 			print("I stand!\n")
@@ -103,11 +103,11 @@ def start_game(player):
 
 			player_cards.append(deck.dealCard())
 			print("Dealer's hand: ", dealer_cards)
-			print("Your hand: ", player_cards) 
+			print("Your hand: ", player_cards, '\n') 
 
 			#Checks if player's hand has busted
 			if check_hand(player_cards) > 21:
-				print("Busted!")
+				print("Busted! \n")
 				print("Your chips: ", player.bankroll)
 			else:
 				continue
@@ -117,33 +117,33 @@ def start_game(player):
 	while check_hand(dealer_cards) < 17:
 		dealer_cards.append(deck.dealCard())
 		print("Dealer's hand: ", dealer_cards)
-		print("Your hand: ", player_cards) 
+		print("Your hand: ", player_cards, '\n') 
 
 
 	if check_hand(dealer_cards) > 21:
-		print("Dealer busted, you win!")
+		print("Dealer busted, you win! \n")
 		player.bankroll += bet*2
 		print("You won: ", bet*2)
-		print("Your chips:", player.bankroll)
+		print("Your chips:", player.bankroll, '\n')
 	
 	elif check_hand(dealer_cards) == check_hand(player_cards):
-		print("It's a tie! Your bet is being returned to you.")
+		print("It's a tie! Your bet is being returned to you. \n")
 
 	elif check_hand(player_cards) == 21:
-		print("You've hit Blackjack!")
+		print("You've hit Blackjack! \n")
 		player.bankroll += bet*2
-		print("You won: ", bet*2)
+		print("You won: ", bet*2, '\n')
 
 	elif check_hand(dealer_cards) == 21:
-		print("Dealer blackjack!")
+		print("Dealer blackjack! \n")
 
 	elif check_hand(dealer_cards) > check_hand(player_cards):
-		print("Dealer wins!")
+		print("Dealer wins! \n")
 
 	else:
-		print("You win!")
+		print("You win! \n")
 		player.bankroll += bet*2
 		print("You won: ", bet*2)
-		print("Your chips: ",player.bankroll)
+		print("Your chips: ",player.bankroll, '\n')
 
 play()
