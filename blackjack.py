@@ -12,7 +12,7 @@ class Deck(object):
 		return shuffle(self.cards)
 
 	def dealCard(self):
-	return self.cards.pop(0)
+		return self.cards.pop(0)
 
 def check_hand(cards):
 	value = 0
