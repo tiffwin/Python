@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import input
 from random import shuffle
 
 class Player(object):
