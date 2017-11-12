@@ -56,7 +56,7 @@ def start_game(player):
 			bet = int(input('Enter bet amount:'))
 			
 			if bet > player.bankroll:
-				print("You don’t have that much money.")
+				print("You don't have that much money.")
 			elif bet <= 0:
 				print ("You need to enter a positive amount.")
 			else:
