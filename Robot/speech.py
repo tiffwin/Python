@@ -172,15 +172,15 @@ def listen_print_loop(responses, robot):
 
             num_chars_printed = 0
 
-            if 'go' in transcript
+            if 'go' in transcript:
                 robot.forward()
-            elif 'back' in transcript
+            elif 'back' in transcript:
                 robot.backward()
-            elif 'left' in transcript
+            elif 'left' in transcript:
                 robot.left()
-            elif 'right' in transcript
+            elif 'right' in transcript:
                 robot.right()
-            elif 'stop' in transcript
+            elif 'stop' in transcript:
                 robot.stop()
             else:
                 pass
