@@ -31,9 +31,8 @@ def Main():
 	
 	robotCar = Robot()
 
-	while True:
-		command = speech.run()
-
+	print (speech.run())
+"""
 		if command == 'go':
 			robotCar.command_forward()
 
@@ -45,10 +44,13 @@ def Main():
 
 		elif command == 'right':
 			robotCar.command_right()
+		
+		elif command == 'stop':
+			robotCar.command_stop()
 
 		else:
 			continue
-
+"""
 
 if __name__ == "__main__":
     # set up a handler for ignoring the Ctrl+Z commands
