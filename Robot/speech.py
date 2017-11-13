@@ -131,60 +131,65 @@ def listen_print_loop(responses, robot):
     the next result to overwrite it, until the response is a final one. For the
     final one, print a newline to preserve the finalized transcription.
     """
-    num_chars_printed = 0
-    for response in responses:
+    try:
+        num_chars_printed = 0
+        for response in responses:
 
-        if not response.results:
-            continue
+            if not response.results:
+                continue
 
-        # The `results` list is consecutive. For streaming, we only care about
-        # the first result being considered, since once it's `is_final`, it
-        # moves on to considering the next utterance.
-        result = response.results[0]
-        if not result.alternatives:
-            continue
+            # The `results` list is consecutive. For streaming, we only care about
+            # the first result being considered, since once it's `is_final`, it
+            # moves on to considering the next utterance.
+            result = response.results[0]
+            if not result.alternatives:
+                continue
 
-        # Display the transcription of the top alternative.
-        transcript = result.alternatives[0].transcript
+            # Display the transcription of the top alternative.
+            transcript = result.alternatives[0].transcript
 
-        # Display interim results, but with a carriage return at the end of the
-        # line, so subsequent lines will overwrite them.
-        #
-        # If the previous result was longer than this one, we need to print
-        # some extra spaces to overwrite the previous result
-        overwrite_chars = ' ' * (num_chars_printed - len(transcript))
+            # Display interim results, but with a carriage return at the end of the
+            # line, so subsequent lines will overwrite them.
+            #
+            # If the previous result was longer than this one, we need to print
+            # some extra spaces to overwrite the previous result
+            overwrite_chars = ' ' * (num_chars_printed - len(transcript))
 
-        if not result.is_final:
-            sys.stdout.write(transcript + overwrite_chars + '\r')
-            sys.stdout.flush()
+            if not result.is_final:
+                sys.stdout.write(transcript + overwrite_chars + '\r')
+                sys.stdout.flush()
 
-            num_chars_printed = len(transcript)
+                num_chars_printed = len(transcript)
 
-        else:
-            print(transcript + overwrite_chars)
-
-            # Exit recognition if any of the transcribed phrases could be
-            # one of our keywords.
-            if re.search(r'\b(exit|quit)\b', transcript, re.I):
-                print('Exiting..')
-                robot.stop()
-                break
-
-            num_chars_printed = 0
-
-            if 'go' in transcript:
-                robot.forward()
-            elif 'back' in transcript:
-                robot.backward()
-            elif 'left' in transcript:
-                robot.left()
-            elif 'right' in transcript:
-                robot.right()
-            elif 'stop' in transcript:
-                robot.stop()
             else:
-                pass
+                print(transcript + overwrite_chars)
 
+                # Exit recognition if any of the transcribed phrases could be
+                # one of our keywords.
+                if re.search(r'\b(exit|quit)\b', transcript, re.I):
+                    print('Exiting..')
+                    robot.stop()
+                    break
+
+                num_chars_printed = 0
+
+                if transcript == 'go':
+                    robot.forward()
+                elif transcript == 'back':
+                    robot.backward()
+                elif transcript == 'left':
+                    robot.left()
+                elif transcript == 'right':
+                    robot.right()
+                elif transcript == 'stop':
+                    robot.stop()
+                elif transcript == 'lights':
+                    robot.led_on(0)
+                    robot.led_on(1)
+                else:
+                    pass
+    except:
+        robot.stop()
 
 def main(robot):
     # See http://g.co/cloud/speech/docs/languages
