@@ -12,26 +12,37 @@ def Main():
 	
 	robotCar = EasyGoPiGo3()
 
-	while speech.run() not None:
+	while True:
 
 		command = speech.run()
 
 		if command == 'go':
+			print(command)
 			robotCar.forward()
 
 		elif command == 'back':
+			print(command)
 			robotCar.backward()
 
 		elif command == 'left':
+			print(command)
 			robotCar.left()
 
 		elif command == 'right':
+			print(command)
 			robotCar.right()
 		
 		elif command == 'stop':
+			print(command)
 			robotCar.stop()
 
+		elif command == 'quit':
+			print(command)
+			robotCar.stop()
+			break
+
 		else:
+			print("No command heard")
 			continue
 
 
