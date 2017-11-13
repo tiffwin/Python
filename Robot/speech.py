@@ -183,9 +183,14 @@ def listen_print_loop(responses, robot):
                     robot.right()
                 elif 'stop' in transcript.lower():
                     robot.stop()
-                elif 'lights' in transcript.lower():
                     robot.led_on(0)
                     robot.led_on(1)
+                elif 'lights on' in transcript.lower():
+                    robot.open_left_eye()
+                    robot.open_right_eye()
+                elif 'lights off' in transcript.lower():
+                    robot.open_left_eye()
+                    robot.open_right_eye()
                 else:
                     pass
     except:
