@@ -7,50 +7,33 @@ import speech
 
 from time import sleep
 
-class Robot(object):
-	def __init__(self):
-		self.robot = EasyGoPiGo3()
-
-	def command_forward(self):
-		self.robot.forward()
-
-	def command_backward(self):
-		self.robot.backward()
-
-	def command_left(self):
-		self.robot.left()
-
-	def command_right(self):
-		self.robot.right()
-
-	def command_stop(self):
-		self.robot.stop()
-
 
 def Main():
 	
-	robotCar = Robot()
+	robotCar = EasyGoPiGo3()
 
-	print (speech.run())
-"""
+	while speech.run() not None:
+
+		command = speech.run()
+
 		if command == 'go':
-			robotCar.command_forward()
+			robotCar.forward()
 
 		elif command == 'back':
-			robotCar.command_backward()
+			robotCar.backward()
 
 		elif command == 'left':
-			robotCar.command_left()
+			robotCar.left()
 
 		elif command == 'right':
-			robotCar.command_right()
+			robotCar.right()
 		
 		elif command == 'stop':
-			robotCar.command_stop()
+			robotCar.stop()
 
 		else:
 			continue
-"""
+
 
 if __name__ == "__main__":
     # set up a handler for ignoring the Ctrl+Z commands
