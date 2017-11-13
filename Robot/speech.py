@@ -163,8 +163,10 @@ def listen_print_loop(responses):
 
             num_chars_printed = 0
 
+            return transcript
 
-def main():
+
+def run():
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'en-US'  # a BCP-47 language tag
@@ -187,7 +189,3 @@ def main():
 
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
-
-
-if __name__ == '__main__':
-    main()
