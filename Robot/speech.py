@@ -26,6 +26,7 @@ Example usage:
 """
 
 # [START import_libraries]
+from __future__ import print_function
 from __future__ import division
 
 import re
@@ -36,6 +37,13 @@ from google.cloud.speech import enums
 from google.cloud.speech import types
 import pyaudio
 from six.moves import queue
+
+#GoPiGo3 Libraries
+from easygopigo3 import EasyGoPiGo3
+import signal
+import speech
+
+from time import sleep
 # [END import_libraries]
 
 # Audio recording parameters
@@ -109,7 +117,7 @@ class MicrophoneStream(object):
 # [END audio_stream]
 
 
-def listen_print_loop(responses):
+def listen_print_loop(responses, robot):
     """Iterates through server responses and prints them.
 
     The responses passed is a generator that will block until a response
@@ -126,6 +134,8 @@ def listen_print_loop(responses):
     """
     num_chars_printed = 0
     for response in responses:
+        robot.forward()
+
         if not response.results:
             continue
 
@@ -163,10 +173,8 @@ def listen_print_loop(responses):
 
             num_chars_printed = 0
 
-            return transcript
 
-
-def run():
+def main(robot):
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     language_code = 'en-US'  # a BCP-47 language tag
@@ -188,4 +196,23 @@ def run():
         responses = client.streaming_recognize(streaming_config, requests)
 
         # Now, put the transcription responses to use.
-        listen_print_loop(responses)
+        listen_print_loop(responses, robot)
+
+
+
+
+if __name__ == "__main__":
+    # set up a handler for ignoring the Ctrl+Z commands
+    signal.signal(signal.SIGTSTP, lambda signum, frame : print("Press the appropriate key for closing the app."))
+
+    try:
+        robot = EasyGoPiGo3()
+        main(robot)
+
+    except IOError as error:
+        # if the GoPiGo3 is not reachable
+        # then print the error and exit
+        print(str(error))
+        exit(1)
+
+    exit(0)
