@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import division
 
-import easygopigo3
+from easygopigo3 import EasyGoPiGo3
 import signal
 import speech
 
