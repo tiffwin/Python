@@ -17,13 +17,13 @@ class Robot(object):
 	def command_backward(self):
 		self.robot.backward()
 
-	def command_left()
+	def command_left(self):
 		self.robot.left()
 
-	def command_right()
+	def command_right(self):
 		self.robot.right()
 
-	def command_stop()
+	def command_stop(self):
 		self.robot.stop()
 
 
