@@ -173,17 +173,17 @@ def listen_print_loop(responses, robot):
 
                 num_chars_printed = 0
 
-                if transcript == 'go':
+                if 'go' in transcript:
                     robot.forward()
-                elif transcript == 'back':
+                elif 'back' in transcript:
                     robot.backward()
-                elif transcript == 'left':
+                elif 'left' in transcript:
                     robot.left()
-                elif transcript == 'right':
+                elif 'right' in transcript:
                     robot.right()
-                elif transcript == 'stop':
+                elif 'stop' in transcript:
                     robot.stop()
-                elif transcript == 'lights':
+                elif 'lights' in transcript:
                     robot.led_on(0)
                     robot.led_on(1)
                 else:
