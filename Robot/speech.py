@@ -41,7 +41,6 @@ from six.moves import queue
 #GoPiGo3 Libraries
 from easygopigo3 import EasyGoPiGo3
 import signal
-import speech
 
 from time import sleep
 # [END import_libraries]
