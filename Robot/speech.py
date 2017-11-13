@@ -133,7 +133,6 @@ def listen_print_loop(responses, robot):
     """
     num_chars_printed = 0
     for response in responses:
-        robot.forward()
 
         if not response.results:
             continue
@@ -168,9 +167,23 @@ def listen_print_loop(responses, robot):
             # one of our keywords.
             if re.search(r'\b(exit|quit)\b', transcript, re.I):
                 print('Exiting..')
+                robot.stop()
                 break
 
             num_chars_printed = 0
+
+            if 'go' in transcript
+                robot.forward()
+            elif 'back' in transcript
+                robot.backward()
+            elif 'left' in transcript
+                robot.left()
+            elif 'right' in transcript
+                robot.right()
+            elif 'stop' in transcript
+                robot.stop()
+            else:
+                pass
 
 
 def main(robot):
