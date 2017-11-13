@@ -174,6 +174,8 @@ def listen_print_loop(responses, robot):
                 num_chars_printed = 0
 
                 if 'go' in transcript.lower():
+                    robot.led_off(0)
+                    robot.led_off(1)
                     robot.forward()
                 elif 'back' in transcript.lower():
                     robot.backward()
@@ -189,8 +191,8 @@ def listen_print_loop(responses, robot):
                     robot.open_left_eye()
                     robot.open_right_eye()
                 elif 'lights off' in transcript.lower():
-                    robot.open_left_eye()
-                    robot.open_right_eye()
+                    robot.close_left_eye()
+                    robot.close_right_eye()
                 else:
                     pass
     except:
